@@ -1,0 +1,186 @@
+{
+  "product": "Galaxy Cluster install package",
+  "version": "22.06",
+  "registered": "Geedge",
+  "updated": "2022-06-30 12:00:00",
+  "components": {
+    "oss": [
+      {
+        "name": "zookeeper",
+        "version": "3.4.10",
+        "licenseType": "Apache License 2.0",
+        "description": "分布式应用程序协调服务"
+      },
+      {
+        "name": "kafka",
+        "version": "1.0.0",
+        "licenseType": "Apache License 2.0",
+        "description": "消息队列"
+      },
+      {
+        "name": "habse",
+        "version": "2.2.3",
+        "licenseType": "Apache License 2.0",
+        "description": "用于文件系统和存储Radius数据"
+      },
+      {
+        "name": "flink",
+        "version": "1.13.1",
+        "licenseType": "Apache License 2.0",
+        "description": "流数据计算框架用于日志预处理及部分统计"
+      },
+      {
+        "name": "clickhouse",
+        "version": "21.8.13.1.altinitystable",
+        "licenseType": "Apache License 2.0",
+        "description": "原始日志数据库"
+      },
+      {
+        "name": "druid",
+        "version": "0.18.1",
+        "licenseType": "Apache License 2.0",
+        "description": "分析实时数据并提供低延迟查询的OLAP应用程序"
+      },
+      {
+        "name": "gohangout",
+        "version": "1.15.2.20220117",
+        "description": "动态获取原始日志表schema入库程序"
+      },
+      {
+        "name": "nacos",
+        "version": "2.0.2",
+        "licenseType": "Apache License 2.0",
+        "description": "分布式配置中心"
+      },
+      {
+        "name": "mariadb",
+        "version": "10.5.3",
+        "licenseType": "Apache License 2.0",
+        "description": "传统数据库用于nacos/druid/galaxy-job-service数据存储"
+      },
+      {
+        "name": "arangodb",
+        "version": "3.6.4",
+        "licenseType": "Apache License 2.0",
+        "description": "图数据库用于存储IPlearning统计结果"
+      }
+    ],
+    "apps": [
+      {
+        "name": "galaxy-qgw-service",
+        "version": "356-rc1",
+        "description": "数据平台对外统一查询网关"
+      },
+      {
+        "name": "galaxy-report-service",
+        "version": "22.04.11",
+        "description": "自定义报表查询服务"
+      },
+      {
+        "name": "galaxy-hos-service",
+        "version": "22.06.23",
+        "description": "对象存储服务"
+      },
+      {
+        "name": "galaxy-job-admin",
+        "version": "v1.3.220308",
+        "description": "分布式任务调度平台"
+      },
+      {
+        "name": "galaxy-job-executor",
+        "version": "v1.3.220623",
+        "description": "分布式任务调度平台-执行器"
+      },
+      {
+        "name": "galaxy-gateway-nginx",
+        "version": "1.17.0",
+        "description": "查询网管负载均衡器"
+      },
+      {
+        "name": "node-exporter",
+        "version": "1.2.2",
+        "description": "暴露服务器prometheus指标插件"
+      },
+      {
+        "name": "packet_dump",
+        "version": "v2.3.1",
+        "description": "DPI补包插件"
+      }
+    ],
+    "tasks": [
+      {
+        "name": "flink",
+        "topology": [
+          {
+            "name": "radius-relation-22-04-01.jar",
+            "md5": "d66faa3aeab2ba7abe382e27928b8f17",
+            "description": "Radius subscriber关系更新HBase程序"
+          },
+          {
+            "name": "log-completion-schema-220318-Nacos.jar",
+            "md5": "70a6fcde9c350519ea4d92c1fa853a83",
+            "description": "ETL程序 用于原始日志补全及汇聚程序"
+          },
+          {
+            "name": "flink-dos-detection.jar",
+            "md5": "0aef189f1e2c4a4e014655449df714e2",
+            "description": "ddos威胁检测程序"
+          },
+          {
+            "name": "flink-sql-submit.jar",
+            "md5": "d6432fd6a29253c23931562d72b46ef1",
+            "description": "TOPN计算程序"
+          },
+          {
+            "name": "log-olap-analysis-schema-220323-Nacos.jar",
+            "md5": "51779b623cd7aa2c3e4ff322549857d6",
+            "description": "Livecharts计算程序"
+          },
+          {
+            "name": "radius-account-knowledge-220413-sink.jar",
+            "md5": "f47d7f490484d33d797c16d47d02d90d",
+            "description": "Radius上下线记录程序"
+          },
+          {
+            "name": "log-stream-voip-relation-220418-Nacos.jar",
+            "md5": "a4a12ec7c46940a3e89da4420351354f",
+            "description": "VOIP融合程序"
+          },
+          {
+            "name": "flink-app-recommend-22-01-07.jar",
+            "md5": "0d88ad0b3f668248009c407999bb5f32",
+            "description": "APP白名单学习程序"
+          }
+        ]
+      },
+      {
+        "name": "druid",
+        "topology": "proxy_event_hits_log.json,security_event_hits_log.json,sys_storage_log.json,top_client_ip_log.json,top_external_host_log.json,top_internal_host_log.json,top_server_ip_log.json,top_urls_log.json,top_user_log.json,top_website_domain_log.json,traffic_app_stat_log.json,traffic_metrics_log.json ,traffic_protocol_stat_log.json,traffic_summary_log.json ,traffic_top_destination_ip_metrics_log.json,urls_proxy_hot.json,urls_security_hot.json",
+        "segments": [
+          {
+            "name": "segments.zip",
+            "md5": "0a3c607226daaf35a53d302b968bf7f7",
+            "description": "内置segments用于生成对应的基础表结构"
+          },
+          {
+            "name": "druid_segments-tsg3.0.sql",
+            "md5": "03ccd14160de7af90973df5bd3893033",
+            "description":"内置segments元数据信息sql数据"
+          }
+        ]
+      },
+      {
+        "name": "gohangout",
+        "topology": "k2ck_active_defence_event_tsgv3 ,k2ck_dos_event_tsgv3 ,k2ck_gtpc_record_tsgv3 ,k2ck_interim_session_record_tsgv3 ,k2ck_proxy_event_tsgv3 ,k2ck_radius_onff_log_tsgv3 ,k2ck_radius_record_tsgv3 ,k2ck_security_event_tsgv3 ,k2ck_session_record_tsgv3 ,k2ck_sys_packet_capture_event_tsgv3 ,k2ck_transaction_record_tsgv3 ,k2ck_voip_record_tsgv3",
+        "description": "原始/补全/统计日志入库"
+      },
+      {
+        "name": "clickhouse",
+        "topology": "create_ck_table.sql",
+        "md5": "7cc9775d22403fd09c14cdb744487428",
+        "description": "Clickhouse 全量建表语句"
+      }
+    ]
+  }
+}
+
