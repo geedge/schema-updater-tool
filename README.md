@@ -8,6 +8,13 @@ Galaxy-qgw-service Schema版本更新工具包，用于不同版本之间的Sche
 
 对ttl和visibility进行远程配置的拉取，进行对应规则的修改，并保存本地配置文件和推送修改后的文件到nacos
 
+## 规则
+
+- TTL状态均以线上为准，更新本地Schema属性。  
+- Visibility状态共三种：hidden、enabled、disabled  
+  - 若为hidden状态，则以本地Schema为准不予处理。  
+  - 若为enabled/disabled状态，则以线上为准，更新本地Schema属性。  
+
 ## 启动方式
 
 ```
