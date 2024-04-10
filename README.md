@@ -12,8 +12,8 @@ Galaxy-qgw-service Schema版本更新工具包，用于不同版本之间的Sche
 
 - TTL状态均以线上为准，更新本地Schema属性。  
 - Visibility状态共三种：hidden、enabled、disabled  
-  - 若为hidden状态，则以本地Schema为准不予处理。  
-  - 若为enabled/disabled状态，则以线上为准，更新本地Schema属性。  
+  - 若线上Schema内为hidden状态，则以本地Schema状态为准不予处理。  
+  - 若线上Schema内为enabled或disabled状态，则以线上为准，更新本地Schema状态属性。  
 - 在common_config.properties配置文件中non.schema.tables指定了qgw中不属于schema的文件列表（逗号分割），该类文件会直接推送至nacos。
 
 ## 启动方式
