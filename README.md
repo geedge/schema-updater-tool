@@ -27,3 +27,27 @@ java -jar schema-updater-tool-{version}.jar {schema folder} {nacos address} {nac
 java -jar schema-updater-tool-3.1.jar schema/ 192.168.44.12 test
 ```
 
+## 日志信息
+涉及TTL变更的Schema输出操作操作日志样例：
+```
+<================开始对monitor_event.json表进行更新操作================>
+<字段:log_id的TTL值变更为：2592000>
+<字段:session_id的TTL值变更为：2592000>
+<字段:start_timestamp_ms的TTL值变更为：2592000>
+<配置monitor_event.json已成功推送至Nacos！>
+```
+不包含TTL的Schema输出日志样例：
+```
+<================开始对application_protocol_stat.json表进行更新操作================>
+<该表不包含表TTL信息!>
+<配置application_protocol_stat.json已成功推送至Nacos！>
+```
+non.schema.tables指定的文件和Nacos中不存在的文件会直接推送：
+```
+<public_code_info.json非Schema表，直接推送至Nacos>
+<配置public_code_info.json已成功推送至Nacos！>
+
+<Nacos未查询到top_server_countries.json，判断为新文件，直接推送至Nacos>
+<配置top_server_countries.json已成功推送至Nacos！>
+```
+异常则会有相关的ERROR日志。
